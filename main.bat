@@ -13,7 +13,7 @@ echo.
 @ping -n 1 localhost> nul
 echo.
 @ping -n 1 localhost> nul
-echo [2] Not yet
+echo [2] Open Windows
 echo.
 @ping -n 1 localhost> nul
 echo.
@@ -24,7 +24,7 @@ echo.
 set /p menu1=Choose an Option from Above:
 
 If %menu1% == 1 goto countspeed
-If %menu1% == 2 goto echo not yet & @ping -n 1 localhost> nul & cls & goto top
+If %menu1% == 2 goto oppwind
 If %menu1% == 3 exit
 goto top
 
@@ -207,8 +207,15 @@ endlocal
 pause
 goto top
 
+:oppwind
+start cmd /k :1 | set "x=0" | :2 | echo %x%/100000000 | set /a "x+=1" | If %x% == 1000 (exit) else (goto 2)
 
-
+:startcount
+set "x=0"
+:startcount26
+echo %x%/100000000
+set /a "x+=1"
+If %x% == 100000000 (goto done) else (goto startcount26)
 :dtd
 set /p dtd1=.:.
 %dtd1%
